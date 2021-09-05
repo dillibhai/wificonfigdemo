@@ -4,7 +4,10 @@
 
 import 'dart:convert';
 
-DataModel dataModelFromJson(String str) => DataModel.fromJson(json.decode(str));
+// List<DataModel> dataModelFromJson(String str) => DataModel.fromJson(json.decode(str));
+
+List<DataModel> dataModelFromJson(String str) =>
+    List<DataModel>.from(json.decode(str).map((x) => DataModel.fromJson(x)));
 
 String dataModelToJson(DataModel data) => json.encode(data.toJson());
 
@@ -22,6 +25,10 @@ class DataModel {
   Map<String, dynamic> toJson() => {
         "stbs": List<dynamic>.from(stbs.map((x) => x.toJson())),
       };
+  @override
+  String toString() {
+    return "DataModel(stbs: $stbs)";
+  }
 }
 
 class Stb {
@@ -90,6 +97,10 @@ class Stb {
         "ssid_details": ssidDetails.toJson(),
         "hotspot_stat": hotspotStat.toJson(),
       };
+  @override
+  String toString() {
+    return "DataModel(id: $id,mac: $mac,serial: $serial,vendor,id: $id: $vendor,model: $model,osVersion: $osVersion,owner: $owner,batchNo: $batchNo,status: $status,webUser: $webUser,createdAt: $createdAt,updatedAt: $updatedAt,ssidDetails: $ssidDetails,hotspotStat: $hotspotStat,)";
+  }
 }
 
 class HotspotStat {
@@ -110,6 +121,10 @@ class HotspotStat {
         "expiry_date": expiryDate.toIso8601String(),
         "is_expired": isExpired,
       };
+  @override
+  String toString() {
+    return "DataModel(expiryDate: $expiryDate,isExpired: $isExpired,)";
+  }
 }
 
 class SsidDetails {
@@ -146,4 +161,8 @@ class SsidDetails {
         "password": password,
         "mode": mode,
       };
+  @override
+  String toString() {
+    return "DataModel(id: $id,stbId: $stbId,status: $status,ssid: $ssid,password: $password,mode: $mode,)";
+  }
 }
